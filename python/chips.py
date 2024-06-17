@@ -11,8 +11,8 @@ MAX_WAGER = 1_000_000
 class Chips:
     memory: [Stack]
     stack_pointer: int
-    active_chip: Optional[float]
-    bank: float
+    active_chip: Optional[int]
+    bank: int
 
     def __init__(self):
         self.memory = [Stack() for _ in range(NUM_STACKS)]
