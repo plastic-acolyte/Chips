@@ -1,16 +1,16 @@
-PUT "\n"
-PUT "D"
-PUT "L"
-PUT "R"
-PUT "O"
-PUT "W"
+PUT 10
+PUT 68
+PUT 76
+PUT 82
+PUT 79
+PUT 87
 
-PUT " "
+PUT 32
 
-PUT "O"
-PUT "L"
-PUT "L"
-PUT "E"
-PUT "H"
+PUT 79
+PUT 76
+PUT 76
+PUT 69
+PUT 72
 
 EAT C
