@@ -1,5 +1,5 @@
 class Stack:
-    contents: [float]
+    contents: [int]
 
     def __init__(self):
         self.contents = []
@@ -16,7 +16,7 @@ class Stack:
         self.contents = []
         return result
 
-    def eat_as_num(self) -> float:
+    def eat_as_num(self) -> int:
         result = 0
 
         for value in self.contents:
