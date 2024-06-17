@@ -23,5 +23,5 @@ class Chips:
     def eat(self, mode='C'):
         pass
 
-    def put(self, value):
+    def put(self, value=0):
         pass
