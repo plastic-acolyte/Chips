@@ -20,7 +20,7 @@ class Chips:
         self.active_chip = None
         self.bank = STARTING_BANK
 
-    def eat(self, mode):
+    def eat(self, mode='C'):
         pass
 
     def put(self, value):
