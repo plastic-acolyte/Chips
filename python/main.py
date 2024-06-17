@@ -24,10 +24,11 @@ def main():
 
             pieces = line.strip().split(maxsplit=1)
             cmd = Command.parse(pieces[0])
+            params = pieces[1] if len(pieces) > 1 else ""
 
             match cmd:
-                case Command.EAT: handle_eat(chips, pieces[1])
-                case Command.PUT: handle_put(chips, pieces[1])
+                case Command.EAT: handle_eat(chips, params)
+                case Command.PUT: handle_put(chips, params)
                 case _: raise ValueError
 
 
