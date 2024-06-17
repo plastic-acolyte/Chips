@@ -31,12 +31,22 @@ def main():
                 case _: raise ValueError
 
 
-def handle_eat(chips, param_string):
-    pass
+def handle_eat(chips, params):
+    if params == '' or params == 'C':
+        chips.eat()
+    elif params == 'N':
+        chips.eat('N')
+    else:
+        raise ValueError
 
 
-def handle_put(chips, param_string):
-    pass
+def handle_put(chips, params):
+    if params == '':
+        chips.put()
+    elif params.isnumeric():
+        chips.put(int(params))
+    else:
+        raise ValueError
 
 
 if __name__ == '__main__':
