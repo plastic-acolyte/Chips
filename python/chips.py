@@ -8,13 +8,13 @@ STARTING_BANK = 777
 class Chips:
     memory: [Stack]
     stack_pointer: int
-    active_chip: Optional[int]
+    hand: Optional[int]
     bank: int
 
     def __init__(self):
         self.memory = [Stack() for _ in range(NUM_STACKS)]
         self.stack_pointer = 0
-        self.active_chip = None
+        self.hand = None
         self.bank = STARTING_BANK
 
     def eat(self, mode='C'):
