@@ -2,10 +2,10 @@ from typing import Optional
 from stack import Stack
 
 NUM_STACKS = 777
-STARTING_BANK = 1000
 
 MIN_WAGER = 10
 MAX_WAGER = 1_000_000
+STARTING_BANK = 777
 
 
 class Chips:
