@@ -41,12 +41,10 @@ def handle_eat(chips, params):
 
 
 def handle_push(chips, params):
-    if params == '':
-        chips.push()
-    elif params.isnumeric():
-        chips.push()
-    else:
+    if params:
         raise ValueError
+
+    chips.push()
 
 
 if __name__ == '__main__':
