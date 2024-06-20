@@ -40,7 +40,7 @@ class Chips:
             raise BankError
 
         if self.hand:
-            raise HandError("DRAW", True)
+            raise HandError(Command.DRAW.value, True)
 
         self.hand = value
         self.bank -= abs(value)
@@ -50,4 +50,4 @@ class Chips:
 
     def push(self):
         if not self.hand:
-            raise HandError("PUT", False)
+            raise HandError(Command.PUSH.value, False)
