@@ -51,3 +51,6 @@ class Chips:
     def push(self):
         if not self.hand:
             raise HandError(Command.PUSH.value, False)
+
+        self.memory[self.stack_pointer].push(self.hand)
+        self.hand = None
