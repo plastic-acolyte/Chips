@@ -15,11 +15,19 @@ def main():
             params = pieces[1] if len(pieces) > 1 else None
 
             match cmd:
+                case Command.BANK: handle_bank(chips, params)
                 case Command.DRAW: handle_draw(chips, params)
                 case Command.EAT: handle_eat(chips, params)
                 case Command.POP: handle_pop(chips, params)
                 case Command.PUSH: handle_push(chips, params)
                 case _: raise ValueError
+
+
+def handle_bank(chips, params):
+    if params:
+        raise ValueError
+
+    chips.bank()
 
 
 def handle_draw(chips, params):

@@ -37,6 +37,13 @@ class Chips:
         self.hand = None
         self.bank = STARTING_BANK
 
+    def bank(self):
+        if not self.hand:
+            raise HandError(Command.BANK.value, False)
+
+        self.bank += abs(self.hand)
+        self.hand = None
+
     def draw(self, value):
         if self.bank < abs(value):
             raise BankError
