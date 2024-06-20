@@ -1,17 +1,5 @@
 from sys import argv
-from chips import Chips
-from enum import Enum, auto
-
-
-class Command(Enum):
-    EAT = auto()
-    PUT = auto()
-
-    @staticmethod
-    def parse(value):
-        match value:
-            case "EAT": return Command.EAT
-            case "PUT": return Command.PUT
+from chips import Chips, Command
 
 
 def main():

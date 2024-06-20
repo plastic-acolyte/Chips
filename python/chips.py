@@ -1,3 +1,4 @@
+from enum import Enum, auto
 from typing import Optional
 
 from error import *
@@ -5,6 +6,21 @@ from stack import Stack
 
 NUM_STACKS = 777
 STARTING_BANK = 777
+
+
+class Command(Enum):
+    BANK = auto()
+    DRAW = auto()
+    EAT = auto()
+    PUT = auto()
+
+    @staticmethod
+    def parse(value):
+        match value:
+            case "BANK": return Command.BANK
+            case "DRAW": return Command.DRAW
+            case "EAT": return Command.EAT
+            case "PUT": return Command.PUT
 
 
 class Chips:
