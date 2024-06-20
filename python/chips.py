@@ -19,6 +19,16 @@ class Chips:
         self.hand = None
         self.bank = STARTING_BANK
 
+    def draw(self, value):
+        if self.bank < value:
+            raise BankError
+
+        if self.hand:
+            raise HandError("DRAW", True)
+
+        self.hand = value
+        self.bank -= value
+
     def eat(self, mode='C'):
         pass
 
