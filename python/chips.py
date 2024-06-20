@@ -20,5 +20,6 @@ class Chips:
     def eat(self, mode='C'):
         pass
 
-    def put(self, value=0):
-        pass
+    def put(self):
+        if not self.hand:
+            raise HandError("PUT", False)

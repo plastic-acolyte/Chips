@@ -45,7 +45,7 @@ def handle_put(chips, params):
     if params == '':
         chips.put()
     elif params.isnumeric():
-        chips.put(int(params))
+        chips.put()
     else:
         raise ValueError
 
