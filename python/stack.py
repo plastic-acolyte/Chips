@@ -1,13 +1,13 @@
 class Stack:
     contents: [int]
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.contents = []
 
     def pop(self) -> int:
         return self.contents.pop()
 
-    def push(self, value):
+    def push(self, value) -> None:
         self.contents.append(value)
 
     def eat_as_char(self) -> str:
