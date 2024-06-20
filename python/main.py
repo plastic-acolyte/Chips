@@ -32,12 +32,10 @@ def handle_draw(chips, params):
 
 
 def handle_eat(chips, params):
-    if params == '' or params == 'C':
-        chips.eat()
-    elif params == 'N':
-        chips.eat('N')
-    else:
+    if params:
         raise ValueError
+
+    chips.eat()
 
 
 def handle_push(chips, params):
