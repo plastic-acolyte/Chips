@@ -4,8 +4,8 @@ class BankError(Exception):
 
 
 class HandError(Exception):
-    def __init__(self, command: str, is_empty: bool):
-        if is_empty:
-            super().__init__("Tried to {} with an empty hand".format(command))
+    def __init__(self, command: str, has_chip: bool):
+        if has_chip:
+            super().__init__("Tried to {} while already holding a chip".format(command))
         else:
-            super().__init__("Tried to {} with a full hand".format(command))
+            super().__init__("Tried to {} while not holding a chip".format(command))
