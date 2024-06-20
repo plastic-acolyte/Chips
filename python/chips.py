@@ -9,22 +9,26 @@ STARTING_BANK = 777
 
 
 class Command(Enum):
+    ADD = "ADD"
     BANK = "BANK"
     DRAW = "DRAW"
     EAT = "EAT"
     FLIP = "FLIP"
     POP = "POP"
     PUSH = "PUSH"
+    SUB = "SUB"
 
     @staticmethod
     def parse(value):
         match value:
+            case "ADD": return Command.ADD
             case "BANK": return Command.BANK
             case "DRAW": return Command.DRAW
             case "EAT": return Command.EAT
             case "FLIP": return Command.FLIP
             case "POP": return Command.POP
             case "PUSH": return Command.PUSH
+            case "SUB": return Command.SUB
 
 
 class Chips:
@@ -38,6 +42,12 @@ class Chips:
         self.stack_pointer = 0
         self.hand = None
         self.bank = STARTING_BANK
+
+    def add(self):
+        if not self.hand:
+            raise HandError(Command.ADD.value, False)
+
+        self.hand += self.memory[self.stack_pointer].pop()
 
     def bank(self):
         if not self.hand:
@@ -81,3 +91,9 @@ class Chips:
 
         self.memory[self.stack_pointer].push(self.hand)
         self.hand = None
+
+    def sub(self):
+        if not self.hand:
+            raise HandError(Command.SUB.value, False)
+
+        self.hand -= self.memory[self.stack_pointer].pop()
