@@ -1,4 +1,4 @@
-from enum import Enum, auto
+from enum import Enum
 from typing import Optional
 
 from error import *
@@ -9,10 +9,10 @@ STARTING_BANK = 777
 
 
 class Command(Enum):
-    BANK = auto()
-    DRAW = auto()
-    EAT = auto()
-    PUT = auto()
+    BANK = "BANK"
+    DRAW = "DRAW"
+    EAT = "EAT"
+    PUSH = "PUSH"
 
     @staticmethod
     def parse(value):
