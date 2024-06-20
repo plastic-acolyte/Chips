@@ -16,7 +16,7 @@ def main():
 
             match cmd:
                 case Command.EAT: handle_eat(chips, params)
-                case Command.PUT: handle_put(chips, params)
+                case Command.PUSH: handle_push(chips, params)
                 case _: raise ValueError
 
 
@@ -29,11 +29,11 @@ def handle_eat(chips, params):
         raise ValueError
 
 
-def handle_put(chips, params):
+def handle_push(chips, params):
     if params == '':
-        chips.put()
+        chips.push()
     elif params.isnumeric():
-        chips.put()
+        chips.push()
     else:
         raise ValueError
 

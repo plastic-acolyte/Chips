@@ -20,7 +20,7 @@ class Command(Enum):
             case "BANK": return Command.BANK
             case "DRAW": return Command.DRAW
             case "EAT": return Command.EAT
-            case "PUT": return Command.PUT
+            case "PUSH": return Command.PUSH
 
 
 class Chips:
@@ -48,6 +48,6 @@ class Chips:
     def eat(self, mode='C'):
         pass
 
-    def put(self):
+    def push(self):
         if not self.hand:
             raise HandError("PUT", False)

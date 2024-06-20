@@ -4,7 +4,7 @@ class Stack:
     def __init__(self):
         self.contents = []
 
-    def put(self, value):
+    def push(self, value):
         self.contents.append(value)
 
     def eat_as_char(self) -> str:
