@@ -4,6 +4,8 @@ Chips is an esoteric programming language with gambling and resource management 
 
 ## Memory
 
+In Chips, data is represented by poker chips which are stored in an array of 777 unbounded stacks. Each chip represents one signed integer. There is also the hand, which can hold one chip, and is used to move chips between stacks.
+
 ## Bank
 
 ## Gambling
