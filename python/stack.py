@@ -7,7 +7,7 @@ class Stack:
     def pop(self) -> int:
         return self.contents.pop()
 
-    def push(self, value) -> None:
+    def push(self, value: int) -> None:
         self.contents.append(value)
 
     def eat_as_char(self) -> str:
