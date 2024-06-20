@@ -17,6 +17,7 @@ class Command(Enum):
     POP = "POP"
     PUSH = "PUSH"
     SUB = "SUB"
+    SWAP = "SWAP"
 
     @staticmethod
     def parse(value):
@@ -29,6 +30,7 @@ class Command(Enum):
             case "POP": return Command.POP
             case "PUSH": return Command.PUSH
             case "SUB": return Command.SUB
+            case "SWAP": return Command.SWAP
 
 
 class Chips:
@@ -97,3 +99,11 @@ class Chips:
             raise HandError(Command.SUB.value, False)
 
         self.hand -= self.memory[self.stack_pointer].pop()
+
+    def swap(self):
+        if not self.hand:
+            raise HandError(Command.SWAP.value, False)
+
+        top = self.memory[self.stack_pointer].pop()
+        self.memory[self.stack_pointer].push(self.hand)
+        self.hand = top
