@@ -12,6 +12,7 @@ class Command(Enum):
     BANK = "BANK"
     DRAW = "DRAW"
     EAT = "EAT"
+    POP = "POP"
     PUSH = "PUSH"
 
     @staticmethod
@@ -20,6 +21,7 @@ class Command(Enum):
             case "BANK": return Command.BANK
             case "DRAW": return Command.DRAW
             case "EAT": return Command.EAT
+            case "POP": return Command.POP
             case "PUSH": return Command.PUSH
 
 
@@ -51,6 +53,12 @@ class Chips:
 
         print(chr(self.hand), end='')
         self.hand = None
+
+    def pop(self):
+        if self.hand:
+            raise HandError(Command.POP.value, True)
+
+        self.hand = self.memory[self.stack_pointer].pop()
 
     def push(self):
         if not self.hand:

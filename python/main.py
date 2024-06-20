@@ -17,6 +17,7 @@ def main():
             match cmd:
                 case Command.DRAW: handle_draw(chips, params)
                 case Command.EAT: handle_eat(chips, params)
+                case Command.POP: handle_pop(chips, params)
                 case Command.PUSH: handle_push(chips, params)
                 case _: raise ValueError
 
@@ -36,6 +37,13 @@ def handle_eat(chips, params):
         raise ValueError
 
     chips.eat()
+
+
+def handle_pop(chips, params):
+    if params:
+        raise ValueError
+
+    chips.pop()
 
 
 def handle_push(chips, params):
