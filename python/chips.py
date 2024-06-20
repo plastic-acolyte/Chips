@@ -14,7 +14,9 @@ class Command(Enum):
     DRAW = "DRAW"
     EAT = "EAT"
     FLIP = "FLIP"
+    NEXT = "NEXT"
     POP = "POP"
+    PREV = "PREV"
     PUSH = "PUSH"
     SUB = "SUB"
     SWAP = "SWAP"
@@ -27,7 +29,9 @@ class Command(Enum):
             case "DRAW": return Command.DRAW
             case "EAT": return Command.EAT
             case "FLIP": return Command.FLIP
+            case "NEXT": return Command.NEXT
             case "POP": return Command.POP
+            case "PREV": return Command.PREV
             case "PUSH": return Command.PUSH
             case "SUB": return Command.SUB
             case "SWAP": return Command.SWAP
@@ -81,11 +85,17 @@ class Chips:
 
         self.hand = -self.hand
 
+    def next(self):
+        self.stack_pointer = (self.stack_pointer + 1) % NUM_STACKS
+
     def pop(self):
         if self.hand:
             raise HandError(Command.POP.value, True)
 
         self.hand = self.memory[self.stack_pointer].pop()
+
+    def prev(self):
+        self.stack_pointer = (self.stack_pointer - 1) % NUM_STACKS
 
     def push(self):
         if not self.hand:

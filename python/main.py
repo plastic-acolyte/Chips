@@ -19,7 +19,9 @@ def main():
                 case Command.BANK: handle_bank(chips, params)
                 case Command.DRAW: handle_draw(chips, params)
                 case Command.EAT: handle_eat(chips, params)
+                case Command.NEXT: handle_pop(chips, params)
                 case Command.POP: handle_pop(chips, params)
+                case Command.PREV: handle_pop(chips, params)
                 case Command.PUSH: handle_push(chips, params)
                 case Command.SUB: handle_sub(chips, params)
                 case Command.SWAP: handle_swap(chips, params)
@@ -64,11 +66,25 @@ def handle_flip(chips, params):
     chips.flip()
 
 
+def handle_next(chips, params):
+    if params:
+        raise ValueError
+
+    chips.next()
+
+
 def handle_pop(chips, params):
     if params:
         raise ValueError
 
     chips.pop()
+
+
+def handle_prev(chips, params):
+    if params:
+        raise ValueError
+
+    chips.prev()
 
 
 def handle_push(chips, params):
