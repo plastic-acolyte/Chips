@@ -12,7 +12,7 @@ def main():
 
             pieces = line.strip().split(maxsplit=1)
             cmd = Command.parse(pieces[0])
-            params = pieces[1] if len(pieces) > 1 else ""
+            params = pieces[1] if len(pieces) > 1 else None
 
             match cmd:
                 case Command.DRAW: handle_draw(chips, params)
@@ -22,7 +22,13 @@ def main():
 
 
 def handle_draw(chips, params):
-    pass
+    if not params:
+        raise ValueError
+
+    elif not params.isnumeric():
+        raise ValueError
+
+    chips.draw(int(params))
 
 
 def handle_eat(chips, params):
