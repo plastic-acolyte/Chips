@@ -47,6 +47,13 @@ def handle_eat(chips, params):
     chips.eat()
 
 
+def handle_flip(chips, params):
+    if params:
+        raise ValueError
+
+    chips.flip()
+
+
 def handle_pop(chips, params):
     if params:
         raise ValueError

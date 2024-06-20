@@ -12,6 +12,7 @@ class Command(Enum):
     BANK = "BANK"
     DRAW = "DRAW"
     EAT = "EAT"
+    FLIP = "FLIP"
     POP = "POP"
     PUSH = "PUSH"
 
@@ -21,6 +22,7 @@ class Command(Enum):
             case "BANK": return Command.BANK
             case "DRAW": return Command.DRAW
             case "EAT": return Command.EAT
+            case "FLIP": return Command.FLIP
             case "POP": return Command.POP
             case "PUSH": return Command.PUSH
 
@@ -60,6 +62,12 @@ class Chips:
 
         print(chr(self.hand), end='')
         self.hand = None
+
+    def flip(self):
+        if not self.hand:
+            raise HandError(Command.FLIP.value, False)
+
+        self.hand = -self.hand
 
     def pop(self):
         if self.hand:
