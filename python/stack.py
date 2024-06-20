@@ -4,6 +4,9 @@ class Stack:
     def __init__(self):
         self.contents = []
 
+    def pop(self) -> int:
+        return self.contents.pop()
+
     def push(self, value):
         self.contents.append(value)
 
