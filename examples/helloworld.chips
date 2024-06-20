@@ -1,3 +1,4 @@
+# Try to build up enough bank to print the whole string
 DRAW 100
 WAGER
 DRAW 100
@@ -19,9 +20,11 @@ WAGER
 DRAW 100
 WAGER
 
+# Push \n
 DRAW 10
 PUSH
 
+# Push DLROW
 DRAW 68
 PUSH
 DRAW 76
@@ -33,9 +36,11 @@ PUSH
 DRAW 87
 PUSH
 
+# Push Space
 DRAW 32
 PUSH
 
+# Push OLLEH
 DRAW 79
 PUSH
 DRAW 76
@@ -47,6 +52,7 @@ PUSH
 DRAW 72
 PUSH
 
+# Print HELLO
 POP
 EAT
 POP
@@ -58,9 +64,11 @@ EAT
 POP
 EAT
 
+# Print Space
 POP
 EAT
 
+# Print WORLD
 POP
 EAT
 POP
@@ -72,5 +80,6 @@ EAT
 POP
 EAT
 
+# Print \n
 POP
 EAT
