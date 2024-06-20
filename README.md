@@ -30,3 +30,20 @@ Payouts are added directly to the bank.
 A program can get input from stdin by using `DRAW ?`. This will get one character from stdin and create a chip with a value equal to the character's ASCII value.
 
 The `EAT` command will consume the chip in the hand and output its ASCII value.
+
+## Commands
+
+| Name  | Parameters | Usage |
+| ----- | ---------- | ----- |
+| ADD   |       | Consume the chip in hand and the top of the active stack and create a chip in hand with their sum as a value. |
+| BANK  |       | Return the chip in hand to the bank. |
+| DRAW  | value | Creates a new chip in hand with the given value. If value is ?, get a character from stdin. |
+| EAT   |       | Consume the chip in hand and output its ASCII value. |
+| FLIP  |       | Negate the value of the chip in hand. |
+| NEXT  |       | Increment the stack pointer. |
+| POP   |       | Pop the top chip from the active stack and put it in the hand. |
+| PREV  |       | Decrement the stack pointer. |
+| PUSH  |       | Push the chip in hand onto the active stack. |
+| SUB   |       | Consume the chip in hand and the top of the active stack and create a chip in hand with a value of (hand - top). |
+| SWAP  |       | Swap the chip in hand with the top of the active stack. |
+| WAGER |       | Gamble with the active stack as a wager. |
