@@ -4,9 +4,11 @@ Chips is an esoteric programming language with gambling and resource management 
 
 ## Memory
 
-In Chips, data is represented by poker chips which are stored in an array of 777 unbounded stacks. Each chip represents one signed integer. There is also the hand, which can hold one chip, and is used to move chips between stacks.
+In Chips, data is represented by poker chips which are stored in an array of 777 unbounded stacks. Each chip stores one signed integer. There is also the hand, which can hold one chip, and can move chips between stacks.
 
 ## Bank
+
+The bank is a finite resource used to create new chips. The bank has an initial value of 777. Creating a chip with the `DRAW n` command will reduce the value of the bank by abs(n). If the bank's value is ever negative, the program will immediately terminate.
 
 ## Gambling
 
