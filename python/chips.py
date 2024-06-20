@@ -1,4 +1,5 @@
 from enum import Enum
+from random import randint
 from typing import Optional
 
 from error import *
@@ -20,6 +21,7 @@ class Command(Enum):
     PUSH = "PUSH"
     SUB = "SUB"
     SWAP = "SWAP"
+    WAGER = "WAGER"
 
     @staticmethod
     def parse(value):
@@ -35,6 +37,7 @@ class Command(Enum):
             case "PUSH": return Command.PUSH
             case "SUB": return Command.SUB
             case "SWAP": return Command.SWAP
+            case "WAGER": return Command.WAGER
 
 
 class Chips:
@@ -117,3 +120,20 @@ class Chips:
         top = self.memory[self.stack_pointer].pop()
         self.memory[self.stack_pointer].push(self.hand)
         self.hand = top
+
+    def wager(self):
+        if not self.hand:
+            raise HandError(Command.WAGER.value, False)
+
+        sevens = 0
+
+        for _ in range(3):
+            if randint(1, 7) == 7:
+                sevens += 1
+
+        match sevens:
+            case 1: self.bank += self.hand * 2
+            case 2: self.bank += self.hand * 7
+            case 3: self.bank += self.hand * 777
+
+        self.hand = None

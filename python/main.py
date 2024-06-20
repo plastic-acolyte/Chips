@@ -25,6 +25,7 @@ def main():
                 case Command.PUSH: handle_push(chips, params)
                 case Command.SUB: handle_sub(chips, params)
                 case Command.SWAP: handle_swap(chips, params)
+                case Command.WAGER: handle_wager(chips, params)
                 case _: raise ValueError
 
 
@@ -106,6 +107,13 @@ def handle_swap(chips, params):
         raise ValueError
 
     chips.swap()
+
+
+def handle_wager(chips, params):
+    if params:
+        raise ValueError
+
+    chips.wager()
 
 
 if __name__ == '__main__':
