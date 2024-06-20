@@ -45,8 +45,12 @@ class Chips:
         self.hand = value
         self.bank -= abs(value)
 
-    def eat(self, mode='C'):
-        pass
+    def eat(self):
+        if not self.hand:
+            raise HandError(Command.EAT.value, False)
+
+        print(chr(self.hand), end='')
+        self.hand = None
 
     def push(self):
         if not self.hand:
