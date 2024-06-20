@@ -15,9 +15,14 @@ def main():
             params = pieces[1] if len(pieces) > 1 else ""
 
             match cmd:
+                case Command.DRAW: handle_draw(chips, params)
                 case Command.EAT: handle_eat(chips, params)
                 case Command.PUSH: handle_push(chips, params)
                 case _: raise ValueError
+
+
+def handle_draw(chips, params):
+    pass
 
 
 def handle_eat(chips, params):
