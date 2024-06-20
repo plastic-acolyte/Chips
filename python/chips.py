@@ -1,4 +1,6 @@
 from typing import Optional
+
+from error import *
 from stack import Stack
 
 NUM_STACKS = 777
