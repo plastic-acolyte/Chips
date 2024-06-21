@@ -14,7 +14,7 @@ The bank is a finite resource used to create new chips. The bank has an initial 
 
 ### Gambling
 
-The only way to acquire more chips is by gambling on a simple dice game. The `WAGER` command will consume the entire stack of chips pointed to by the stack pointer. The total value of this stack will be your wager. Three seven-sided dice will be rolled, with the goal of rolling all sevens. The payouts for this game are as follows:
+The only way to acquire more chips is by gambling on a simple dice game. The `WAGER` command will consume the chip in hand. The value of this chip will be your wager. Three seven-sided dice will be rolled, with the goal of rolling all sevens. The payouts for this game are as follows:
 
 | # of Sevens | Probability | Payout      |
 | :---------: | ----------- | ----------- |
@@ -46,4 +46,4 @@ The `EAT` command will consume the chip in the hand and output its ASCII value.
 | PUSH  |       | Push the chip in hand onto the active stack. |
 | SUB   |       | Consume the chip in hand and the top of the active stack and create a chip in hand with a value of (hand - top). |
 | SWAP  |       | Swap the chip in hand with the top of the active stack. |
-| WAGER |       | Gamble with the active stack as a wager. |
+| WAGER |       | Gamble with the chip in hand as a wager. |
