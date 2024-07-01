@@ -14,13 +14,13 @@ class Chips:
     memory: [Stack]
     stack_pointer: int
     hand: Optional[int]
-    bank: int
+    balance: int
 
     def __init__(self):
         self.memory = [Stack() for _ in range(NUM_STACKS)]
         self.stack_pointer = 0
         self.hand = None
-        self.bank = STARTING_BANK
+        self.balance = STARTING_BANK
 
     def add(self):
         if not self.hand:
@@ -32,18 +32,18 @@ class Chips:
         if not self.hand:
             raise HandError(Token.BANK.value, False)
 
-        self.bank += abs(self.hand)
+        self.balance += abs(self.hand)
         self.hand = None
 
     def draw(self, value):
-        if self.bank < abs(value):
+        if self.balance < abs(value):
             raise BankError
 
         if self.hand:
             raise HandError(Token.DRAW.value, True)
 
         self.hand = value
-        self.bank -= abs(value)
+        self.balance -= abs(value)
 
     def eat(self):
         if not self.hand:
@@ -102,8 +102,8 @@ class Chips:
                 sevens += 1
 
         match sevens:
-            case 1: self.bank += self.hand * 2
-            case 2: self.bank += self.hand * 7
-            case 3: self.bank += self.hand * 777
+            case 1: self.balance += self.hand * 2
+            case 2: self.balance += self.hand * 7
+            case 3: self.balance += self.hand * 777
 
         self.hand = None
