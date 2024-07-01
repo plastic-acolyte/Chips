@@ -56,7 +56,7 @@ class Reader:
 
         with open(filepath) as file:
             for line in file:
-                line = line.split('#', maxsplit=1)[0].strip()
+                line = line.split('#', maxsplit=1)[0].strip().upper()
 
                 if line == '':
                     continue
