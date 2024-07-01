@@ -72,6 +72,6 @@ class Reader:
         token = Token.parse(value)
 
         if token == Token.NUM:
-            return token, int(value)
+            value = int(value)
 
-        return (token,)
+        return token, value
