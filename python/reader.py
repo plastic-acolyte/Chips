@@ -22,7 +22,7 @@ class Token(Enum):
     WHILE = "WHILE"
 
     @staticmethod
-    def parse(value):
+    def parse(value: str):
         match value:
             case "ADD": return Token.ADD
             case "BANK": return Token.BANK
