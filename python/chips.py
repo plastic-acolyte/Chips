@@ -3,7 +3,7 @@ from typing import Optional
 
 from error import *
 from stack import Stack
-from token import Token
+from reader import Token
 
 NUM_STACKS = 777
 STARTING_BANK = 777

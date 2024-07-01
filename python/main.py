@@ -1,6 +1,6 @@
 from sys import argv
+from reader import Reader, Token
 from chips import Chips
-from token import Token
 
 
 def main():
