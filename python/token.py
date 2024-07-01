@@ -6,6 +6,7 @@ class Token(Enum):
     BANK = "BANK"
     DRAW = "DRAW"
     EAT = "EAT"
+    END = "END"
     FLIP = "FLIP"
     NEXT = "NEXT"
     POP = "POP"
@@ -14,6 +15,7 @@ class Token(Enum):
     SUB = "SUB"
     SWAP = "SWAP"
     WAGER = "WAGER"
+    WHILE = "WHILE"
 
     @staticmethod
     def parse(value):
@@ -22,6 +24,7 @@ class Token(Enum):
             case "BANK": return Token.BANK
             case "DRAW": return Token.DRAW
             case "EAT": return Token.EAT
+            case "END": return Token.END
             case "FLIP": return Token.FLIP
             case "NEXT": return Token.NEXT
             case "POP": return Token.POP
@@ -30,3 +33,4 @@ class Token(Enum):
             case "SUB": return Token.SUB
             case "SWAP": return Token.SWAP
             case "WAGER": return Token.WAGER
+            case "WHILE": return Token.WHILE
