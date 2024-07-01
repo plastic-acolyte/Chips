@@ -67,5 +67,11 @@ class Reader:
     def has_token(self) -> bool:
         return not self.tokens.empty()
 
-    def get_token(self) -> str:
-        return self.tokens.get()
+    def get_token(self) -> tuple:
+        value = self.tokens.get()
+        token = Token.parse(value)
+
+        if token == Token.NUM:
+            return token, int(value)
+
+        return (token,)
