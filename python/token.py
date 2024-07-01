@@ -8,6 +8,7 @@ class Token(Enum):
     EAT = "EAT"
     END = "END"
     FLIP = "FLIP"
+    GAMBIT = "GAMBIT"
     HAND = "HAND"
     NEXT = "NEXT"
     POP = "POP"
@@ -28,6 +29,7 @@ class Token(Enum):
             case "EAT": return Token.EAT
             case "END": return Token.END
             case "FLIP": return Token.FLIP
+            case "GAMBIT": return Token.GAMBIT
             case "HAND": return Token.HAND
             case "NEXT": return Token.NEXT
             case "POP": return Token.POP
