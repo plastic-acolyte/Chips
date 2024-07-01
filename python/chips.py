@@ -1,8 +1,8 @@
 from random import randint
 from typing import Optional
+from collections import deque
 
 from error import *
-from stack import Stack
 from reader import Token
 
 NUM_STACKS = 777
@@ -10,13 +10,13 @@ STARTING_BANK = 777
 
 
 class Chips:
-    memory: [Stack]
+    memory: [deque]
     stack_pointer: int
     hand: Optional[int]
     balance: int
 
     def __init__(self):
-        self.memory = [Stack() for _ in range(NUM_STACKS)]
+        self.memory = [deque() for _ in range(NUM_STACKS)]
         self.stack_pointer = 0
         self.hand = None
         self.balance = STARTING_BANK
@@ -73,7 +73,7 @@ class Chips:
         if not self.hand:
             raise HandError(Token.PUSH.value, False)
 
-        self.memory[self.stack_pointer].push(self.hand)
+        self.memory[self.stack_pointer].append(self.hand)
         self.hand = None
 
     def sub(self):
@@ -87,7 +87,7 @@ class Chips:
             raise HandError(Token.SWAP.value, False)
 
         top = self.memory[self.stack_pointer].pop()
-        self.memory[self.stack_pointer].push(self.hand)
+        self.memory[self.stack_pointer].append(self.hand)
         self.hand = top
 
     def wager(self):
