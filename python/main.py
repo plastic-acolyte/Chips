@@ -1,5 +1,6 @@
 from sys import argv
-from chips import Chips, Command
+from chips import Chips
+from token import Token
 
 
 def main():
@@ -11,21 +12,21 @@ def main():
                 continue
 
             pieces = line.strip().split(maxsplit=1)
-            cmd = Command.parse(pieces[0])
+            cmd = Token.parse(pieces[0])
             params = pieces[1] if len(pieces) > 1 else None
 
             match cmd:
-                case Command.ADD: handle_add(chips, params)
-                case Command.BANK: handle_bank(chips, params)
-                case Command.DRAW: handle_draw(chips, params)
-                case Command.EAT: handle_eat(chips, params)
-                case Command.NEXT: handle_pop(chips, params)
-                case Command.POP: handle_pop(chips, params)
-                case Command.PREV: handle_pop(chips, params)
-                case Command.PUSH: handle_push(chips, params)
-                case Command.SUB: handle_sub(chips, params)
-                case Command.SWAP: handle_swap(chips, params)
-                case Command.WAGER: handle_wager(chips, params)
+                case Token.ADD: handle_add(chips, params)
+                case Token.BANK: handle_bank(chips, params)
+                case Token.DRAW: handle_draw(chips, params)
+                case Token.EAT: handle_eat(chips, params)
+                case Token.NEXT: handle_pop(chips, params)
+                case Token.POP: handle_pop(chips, params)
+                case Token.PREV: handle_pop(chips, params)
+                case Token.PUSH: handle_push(chips, params)
+                case Token.SUB: handle_sub(chips, params)
+                case Token.SWAP: handle_swap(chips, params)
+                case Token.WAGER: handle_wager(chips, params)
                 case _: raise ValueError
 
 

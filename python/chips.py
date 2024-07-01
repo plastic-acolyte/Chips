@@ -4,40 +4,10 @@ from typing import Optional
 
 from error import *
 from stack import Stack
+from token import Token
 
 NUM_STACKS = 777
 STARTING_BANK = 777
-
-
-class Command(Enum):
-    ADD = "ADD"
-    BANK = "BANK"
-    DRAW = "DRAW"
-    EAT = "EAT"
-    FLIP = "FLIP"
-    NEXT = "NEXT"
-    POP = "POP"
-    PREV = "PREV"
-    PUSH = "PUSH"
-    SUB = "SUB"
-    SWAP = "SWAP"
-    WAGER = "WAGER"
-
-    @staticmethod
-    def parse(value):
-        match value:
-            case "ADD": return Command.ADD
-            case "BANK": return Command.BANK
-            case "DRAW": return Command.DRAW
-            case "EAT": return Command.EAT
-            case "FLIP": return Command.FLIP
-            case "NEXT": return Command.NEXT
-            case "POP": return Command.POP
-            case "PREV": return Command.PREV
-            case "PUSH": return Command.PUSH
-            case "SUB": return Command.SUB
-            case "SWAP": return Command.SWAP
-            case "WAGER": return Command.WAGER
 
 
 class Chips:
@@ -54,13 +24,13 @@ class Chips:
 
     def add(self):
         if not self.hand:
-            raise HandError(Command.ADD.value, False)
+            raise HandError(Token.ADD.value, False)
 
         self.hand += self.memory[self.stack_pointer].pop()
 
     def bank(self):
         if not self.hand:
-            raise HandError(Command.BANK.value, False)
+            raise HandError(Token.BANK.value, False)
 
         self.bank += abs(self.hand)
         self.hand = None
@@ -70,21 +40,21 @@ class Chips:
             raise BankError
 
         if self.hand:
-            raise HandError(Command.DRAW.value, True)
+            raise HandError(Token.DRAW.value, True)
 
         self.hand = value
         self.bank -= abs(value)
 
     def eat(self):
         if not self.hand:
-            raise HandError(Command.EAT.value, False)
+            raise HandError(Token.EAT.value, False)
 
         print(chr(self.hand), end='')
         self.hand = None
 
     def flip(self):
         if not self.hand:
-            raise HandError(Command.FLIP.value, False)
+            raise HandError(Token.FLIP.value, False)
 
         self.hand = -self.hand
 
@@ -93,7 +63,7 @@ class Chips:
 
     def pop(self):
         if self.hand:
-            raise HandError(Command.POP.value, True)
+            raise HandError(Token.POP.value, True)
 
         self.hand = self.memory[self.stack_pointer].pop()
 
@@ -102,20 +72,20 @@ class Chips:
 
     def push(self):
         if not self.hand:
-            raise HandError(Command.PUSH.value, False)
+            raise HandError(Token.PUSH.value, False)
 
         self.memory[self.stack_pointer].push(self.hand)
         self.hand = None
 
     def sub(self):
         if not self.hand:
-            raise HandError(Command.SUB.value, False)
+            raise HandError(Token.SUB.value, False)
 
         self.hand -= self.memory[self.stack_pointer].pop()
 
     def swap(self):
         if not self.hand:
-            raise HandError(Command.SWAP.value, False)
+            raise HandError(Token.SWAP.value, False)
 
         top = self.memory[self.stack_pointer].pop()
         self.memory[self.stack_pointer].push(self.hand)
@@ -123,7 +93,7 @@ class Chips:
 
     def wager(self):
         if not self.hand:
-            raise HandError(Command.WAGER.value, False)
+            raise HandError(Token.WAGER.value, False)
 
         sevens = 0
 
