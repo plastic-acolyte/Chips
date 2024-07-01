@@ -12,6 +12,7 @@ class Token(Enum):
     GAMBIT = "GAMBIT"
     HAND = "HAND"
     NEXT = "NEXT"
+    NUM = "NUM"
     POP = "POP"
     PREV = "PREV"
     PUSH = "PUSH"
@@ -41,6 +42,9 @@ class Token(Enum):
             case "TOP": return Token.TOP
             case "WAGER": return Token.WAGER
             case "WHILE": return Token.WHILE
+
+        if value.isnumeric():
+            return Token.NUM
 
 
 class Reader:
