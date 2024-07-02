@@ -43,7 +43,7 @@ class Token(Enum):
             case "WAGER": return Token.WAGER
             case "WHILE": return Token.WHILE
 
-        if value.isnumeric():
+        if value.isnumeric() or value[0] == '-' and value[1:].isnumeric():
             return Token.NUM
 
 
