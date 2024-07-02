@@ -66,7 +66,7 @@ class Tokenizer:
                     self.tokens.put(Token(value))
 
     def has_next(self) -> bool:
-        return self.tokens.empty()
+        return not self.tokens.empty()
 
     def next(self) -> Token:
         return self.tokens.get()
