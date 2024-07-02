@@ -1,36 +1,63 @@
 from sys import argv
-from reader import Reader, Token
 from chips import Chips
+from tokenizer import *
 
 
 def main():
-    reader = Reader(argv[1])
+    tokenizer = Tokenizer(argv[1])
     chips = Chips()
 
-    while reader.has_token():
-        token = reader.get_token()
+    while tokenizer.has_next():
+        token = tokenizer.next()
 
-        match token[0]:
+        if not token.type == TokenType.COMMAND:
+            raise ValueError
+
+        match token.value:
             # Parameterless Commands
-            case Token.ADD: chips.add()
-            case Token.BANK: chips.bank()
-            case Token.EAT: chips.eat()
-            case Token.FLIP: chips.flip()
-            case Token.NEXT: chips.next()
-            case Token.POP: chips.pop()
-            case Token.PREV: chips.prev()
-            case Token.PUSH: chips.push()
-            case Token.SUB: chips.sub()
-            case Token.SWAP: chips.swap()
-            case Token.WAGER: chips.wager()
+            case Command.ADD:
+                chips.add()
+            case Command.BANK:
+                chips.bank()
+            case Command.EAT:
+                chips.eat()
+            case Command.FLIP:
+                chips.flip()
+            case Command.NEXT:
+                chips.next()
+            case Command.POP:
+                chips.pop()
+            case Command.PREV:
+                chips.prev()
+            case Command.PUSH:
+                chips.push()
+            case Command.SUB:
+                chips.sub()
+            case Command.SWAP:
+                chips.swap()
+            case Command.WAGER:
+                chips.wager()
 
             # Commands with one parameter
-            case Token.DRAW: handle_draw(chips, reader)
+            case Command.DRAW:
+                handle_draw(chips, tokenizer)
+
+            # Block commands
+            case Command.WHILE:
+                handle_while(chips, tokenizer)
 
 
-def handle_draw(chips, reader):
-    token = reader.get_token()
-    chips.draw(token[1])
+def handle_draw(chips, tokenizer):
+    token = tokenizer.next()
+
+    if not token.type == TokenType.INT:
+        raise ValueError
+
+    chips.draw(token.value)
+
+
+def handle_while(chips, tokenizer):
+    pass
 
 
 if __name__ == '__main__':
