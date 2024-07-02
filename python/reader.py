@@ -52,7 +52,6 @@ class Reader:
 
     def __init__(self, filepath):
         self.tokens = SimpleQueue()
-        self.token_pointer = 0
 
         with open(filepath) as file:
             for line in file:
