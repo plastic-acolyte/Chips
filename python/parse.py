@@ -112,7 +112,7 @@ class Parser:
         data = CommandData(self.tokens.get())
 
         if not data.token.type == TokenType.COMMAND:
-            raise ValueError
+            raise Exception
 
         for _ in range(data.token.num_parameters()):
             data.parameters.append(self.tokens.get())
