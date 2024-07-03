@@ -1,63 +1,55 @@
 from sys import argv
+
 from chips import Chips
-from tokenizer import *
+from parse import *
 
 
 def main():
-    tokenizer = Tokenizer(argv[1])
+    parser = Parser(argv[1])
     chips = Chips()
 
-    while tokenizer.has_next():
-        token = tokenizer.next()
-
-        if not token.type == TokenType.COMMAND:
-            raise ValueError
-
-        match token.value:
-            # Parameterless Commands
-            case Command.ADD:
-                chips.add()
-            case Command.BANK:
-                chips.bank()
-            case Command.EAT:
-                chips.eat()
-            case Command.FLIP:
-                chips.flip()
-            case Command.NEXT:
-                chips.next()
-            case Command.POP:
-                chips.pop()
-            case Command.PREV:
-                chips.prev()
-            case Command.PUSH:
-                chips.push()
-            case Command.SUB:
-                chips.sub()
-            case Command.SWAP:
-                chips.swap()
-            case Command.WAGER:
-                chips.wager()
-
-            # Commands with one parameter
-            case Command.DRAW:
-                handle_draw(chips, tokenizer)
-
-            # Block commands
-            case Command.WHILE:
-                handle_while(chips, tokenizer)
+    while parser.has_next():
+        data = parser.next()
+        interpret(chips, data)
 
 
-def handle_draw(chips, tokenizer):
-    token = tokenizer.next()
+def interpret(chips: Chips, data: CommandData) -> None:
+    match data.token.value:
+        case Command.ADD:
+            chips.add()
 
-    if not token.type == TokenType.INT:
-        raise ValueError
+        case Command.BANK:
+            chips.bank()
 
-    chips.draw(token.value)
+        case Command.DRAW:
+            chips.draw(data.parameters[0].value)
 
+        case Command.EAT:
+            chips.eat()
 
-def handle_while(chips, tokenizer):
-    pass
+        case Command.FLIP:
+            chips.flip()
+
+        case Command.NEXT:
+            chips.next()
+
+        case Command.POP:
+            chips.pop()
+
+        case Command.PREV:
+            chips.prev()
+
+        case Command.PUSH:
+            chips.push()
+
+        case Command.SUB:
+            chips.sub()
+
+        case Command.SWAP:
+            chips.swap()
+
+        case Command.WAGER:
+            chips.wager()
 
 
 if __name__ == '__main__':

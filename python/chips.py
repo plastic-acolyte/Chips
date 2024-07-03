@@ -3,7 +3,7 @@ from typing import Optional
 from collections import deque
 
 from error import *
-from tokenizer import Command
+from parse import Command
 
 NUM_STACKS = 777
 STARTING_BANK = 777
