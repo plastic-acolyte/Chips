@@ -79,6 +79,9 @@ class CommandData:
     children: list[Self]
 
     def __init__(self, token: Token):
+        if not token.type == TokenType.COMMAND:
+            raise Exception
+
         self.token = token
         self.parameters = []
         self.children = []
@@ -105,9 +108,6 @@ class Parser:
             raise Exception
 
         data = CommandData(self.tokens.get())
-
-        if not data.token.type == TokenType.COMMAND:
-            raise Exception
 
         for _ in range(data.token.num_parameters()):
             data.parameters.append(self.tokens.get())
