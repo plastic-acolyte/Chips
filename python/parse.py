@@ -70,12 +70,7 @@ class Token:
         if not self.type == TokenType.COMMAND:
             raise Exception
 
-        match self.value:
-            case Command.WHILE:
-                return True
-
-            case _:
-                return False
+        return self.value == Command.WHILE
 
 
 class CommandData:
