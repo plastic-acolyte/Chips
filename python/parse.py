@@ -97,7 +97,7 @@ class Parser:
         self.tokens = SimpleQueue()
 
         with open(filepath) as file:
-            for line_number, line in enumerate(file):
+            for line_number, line in enumerate(file, 1):
                 line = line.split('#', maxsplit=1)[0].strip().upper()
 
                 for value in line.split():
