@@ -30,7 +30,7 @@ def interpret(chips: Chips, data: CommandData) -> None:
             chips.bank()
 
         case Command.DRAW:
-            chips.draw(data.parameters[0].value)
+            handle_draw(chips, data)
 
         case Command.EAT:
             chips.eat()
@@ -61,6 +61,10 @@ def interpret(chips: Chips, data: CommandData) -> None:
 
         case Command.WHILE:
             handle_while(chips, data)
+
+
+def handle_draw(chips: Chips, data: CommandData) -> None:
+    chips.draw(data.parameters[0].value)
 
 
 def handle_while(chips: Chips, data: CommandData) -> None:
