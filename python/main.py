@@ -59,6 +59,15 @@ def interpret(chips: Chips, data: CommandData) -> None:
         case Command.WAGER:
             chips.wager()
 
+        case Command.WHILE:
+            handle_while(chips, data)
+
+
+def handle_while(chips: Chips, data: CommandData) -> None:
+    while is_not_zero(chips, data.parameters[0].value):
+        for child in data.children:
+            interpret(chips, child)
+
 
 if __name__ == '__main__':
     main()
