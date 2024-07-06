@@ -4,6 +4,14 @@ from chips import Chips
 from parse import *
 
 
+def is_not_zero(chips: Chips, register: Register) -> bool:
+    if register == Register.HAND:
+        return not chips.peek_hand() == 0
+
+    elif register == Register.TOP:
+        return not chips.peek_top() == 0
+
+
 def main():
     parser = Parser(argv[1])
     chips = Chips()
