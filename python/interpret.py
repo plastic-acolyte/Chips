@@ -14,7 +14,7 @@ class ChipsInterpreter:
     def reset(self):
         self.chips = Chips()
 
-    def run(self, filepath):
+    def execute(self, filepath):
         parser = Parser(filepath)
 
         while parser.has_next():
@@ -95,4 +95,4 @@ class ChipsInterpreter:
 
 
 if __name__ == '__main__':
-    ChipsInterpreter().run(argv[1])
+    ChipsInterpreter().execute(argv[1])
