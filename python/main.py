@@ -1,6 +1,7 @@
 from sys import argv
 
 from chips import Chips
+from error import *
 from parse import *
 
 
@@ -18,7 +19,23 @@ def main():
 
     while parser.has_next():
         data = parser.next()
-        interpret(chips, data)
+
+        try:
+            interpret(chips, data)
+
+        except (BankError, HandError) as err:
+            print("Error at command {} on line {}:".format(data.token.value.name, data.token.line_number))
+
+            if isinstance(err, BankError):
+                print("\tBank is overdrawn")
+
+            elif isinstance(err, HandError):
+                if chips.hand is None:
+                    print("\tNot holding a chip")
+                else:
+                    print("\tAlready holding a chip")
+
+            return
 
 
 def interpret(chips: Chips, data: CommandData) -> None:

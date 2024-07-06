@@ -3,7 +3,6 @@ from typing import Optional
 from collections import deque
 
 from error import *
-from parse import Command
 
 NUM_STACKS = 777
 STARTING_BANK = 777
@@ -23,13 +22,13 @@ class Chips:
 
     def add(self):
         if self.hand is None:
-            raise HandError(Command.ADD.name, False)
+            raise HandError
 
         self.hand += self.memory[self.stack_pointer].pop()
 
     def bank(self):
         if self.hand is None:
-            raise HandError(Command.BANK.name, False)
+            raise HandError
 
         self.balance += abs(self.hand)
         self.hand = None
@@ -39,21 +38,21 @@ class Chips:
             raise BankError
 
         if self.hand is not None:
-            raise HandError(Command.DRAW.name, True)
+            raise HandError
 
         self.hand = value
         self.balance -= abs(value)
 
     def eat(self):
         if self.hand is None:
-            raise HandError(Command.EAT.name, False)
+            raise HandError
 
         print(chr(self.hand), end='')
         self.hand = None
 
     def flip(self):
         if self.hand is None:
-            raise HandError(Command.FLIP.name, False)
+            raise HandError
 
         self.hand = -self.hand
 
@@ -68,7 +67,7 @@ class Chips:
 
     def pop(self):
         if self.hand is not None:
-            raise HandError(Command.POP.name, True)
+            raise HandError
 
         self.hand = self.memory[self.stack_pointer].pop()
 
@@ -77,20 +76,20 @@ class Chips:
 
     def push(self):
         if self.hand is None:
-            raise HandError(Command.PUSH.name, False)
+            raise HandError
 
         self.memory[self.stack_pointer].append(self.hand)
         self.hand = None
 
     def sub(self):
         if self.hand is None:
-            raise HandError(Command.SUB.name, False)
+            raise HandError
 
         self.hand -= self.memory[self.stack_pointer].pop()
 
     def swap(self):
         if self.hand is None:
-            raise HandError(Command.SWAP.name, False)
+            raise HandError
 
         top = self.memory[self.stack_pointer].pop()
         self.memory[self.stack_pointer].append(self.hand)
@@ -98,7 +97,7 @@ class Chips:
 
     def wager(self):
         if self.hand is None:
-            raise HandError(Command.WAGER.name, False)
+            raise HandError
 
         sevens = 0
 
