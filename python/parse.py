@@ -52,19 +52,19 @@ class Token:
         else:
             raise ValueError
 
-    def num_parameters(self) -> int:
+    def parameters(self) -> list[TokenType]:
         if not self.type == TokenType.COMMAND:
             raise Exception
 
         match self.value:
             case Command.DRAW:
-                return 1
+                return [TokenType.INT]
 
             case Command.WHILE:
-                return 1
+                return [TokenType.REGISTER]
 
             case _:
-                return 0
+                return []
 
     def is_block_command(self) -> bool:
         if not self.type == TokenType.COMMAND:
@@ -109,8 +109,13 @@ class Parser:
 
         data = CommandData(self.tokens.get())
 
-        for _ in range(data.token.num_parameters()):
-            data.parameters.append(self.tokens.get())
+        for param_type in data.token.parameters():
+            token = self.tokens.get()
+
+            if not token.type == param_type:
+                raise Exception
+
+            data.parameters.append(token)
 
         if data.token.is_block_command():
             while True:
