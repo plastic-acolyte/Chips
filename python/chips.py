@@ -60,6 +60,12 @@ class Chips:
     def next(self):
         self.stack_pointer = (self.stack_pointer + 1) % NUM_STACKS
 
+    def peek_hand(self):
+        return self.hand
+
+    def peek_top(self):
+        return self.memory[self.stack_pointer][-1]
+
     def pop(self):
         if self.hand is not None:
             raise HandError(Command.POP.name, True)
