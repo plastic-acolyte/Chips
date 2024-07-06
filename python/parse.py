@@ -35,8 +35,11 @@ class Register(Enum):
 class Token:
     type: TokenType
     value: Command | Register | int
+    line_number: int
 
-    def __init__(self, value: str):
+    def __init__(self, value: str, line_number: int):
+        self.line_number = line_number
+
         if value.isnumeric() or value[0] == '-' and value[1:].isnumeric():
             self.type = TokenType.INT
             self.value = int(value)
@@ -94,11 +97,11 @@ class Parser:
         self.tokens = SimpleQueue()
 
         with open(filepath) as file:
-            for line in file:
+            for line_number, line in enumerate(file):
                 line = line.split('#', maxsplit=1)[0].strip().upper()
 
                 for value in line.split():
-                    self.tokens.put(Token(value))
+                    self.tokens.put(Token(value, line_number))
 
     def has_next(self) -> bool:
         return not self.tokens.empty()
